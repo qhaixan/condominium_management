@@ -67,21 +67,21 @@ class VisitorController extends Controller
         return redirect()->route('frontend.index')->withFlashSuccess(__('Checked In Successfully.'));
     }
     
-    public function capacityMaxed($unit_block, $unit_number) {
-      $residentialCapacity = 2;
-      $nonResidentialCapacity = 8;
-      $visitors = Visitor::where('unit_block',$unit_block)->where('unit_number',$unit_number)->whereNull('time_out')->get();
-      $visitorstcount = $visitors->count();
-      $unit = Unit::where('unit_block', $unit_block)->where('unit_number', $unit_number)->first();
-      if ($unit->is_residential) {
-        return $visitorstcount >= $residentialCapacity;
-      }else{
-        return $visitorstcount >= $nonResidentialCapacity;
+    public function update(Request $request) {
+      if ($request->pass_id) {
+        $visitor = Visitor::where('pass_id', $request->pass_id)->whereNull('time_out')->first();
+        if (!$visitor) {
+          return redirect()->back()->withInput()->withFlashDanger('Pass ID not found');
+        }
+      } else {
+        $visitor = Visitor::where('contact', $request->contact)->where('nric', $request->nric)->whereNull('time_out')->first();
+        if (!$visitor) {
+          return redirect()->back()->withInput()->withFlashDanger('Contact or NRIC not found');
+        }
       }
-    }
-    
-    public function duplicateEntry($contact, $nric){
-      $visitor = Visitor::where('contact',$contact)->where('nric',$nric)->whereNull('time_out')->first();
-      return $visitor? true: false;
+      
+      $visitor->time_out = now();
+      $visitor->save();
+      return redirect()->route('frontend.index', ['action'=>'exit'])->withFlashSuccess(__('Checked Out Successfully.'));
     }
 }

@@ -23,3 +23,4 @@ Route::get('terms', [TermsController::class, 'index'])
     });
 
 Route::post('/checkin', [VisitorController::class, 'store'])->name('checkin');
+Route::patch('/checkout', [VisitorController::class, 'update'])->name('checkout');

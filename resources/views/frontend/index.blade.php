@@ -94,7 +94,11 @@
                 @endauth
             </div><!--top-right-->
 
-            @include('frontend.includes.visitorform')
+            @if( request()->get('action') == 'exit' )
+              @include('frontend.includes.visitorformexit')
+            @else
+              @include('frontend.includes.visitorform')
+            @endif
             
             <div class="content" hidden>
                 @include('includes.partials.messages')
