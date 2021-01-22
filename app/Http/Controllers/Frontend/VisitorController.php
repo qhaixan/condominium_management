@@ -43,7 +43,7 @@ class VisitorController extends Controller
         }
 
         $helper = new VisitorHelper;
-        if ($helper->duplicateEntry($request->contact, $request->nric)) {
+        if ($helper->duplicateEntry($request->pass_id, $request->contact, $request->nric)) {
           return redirect()->back()->withInput()->withFlashDanger('Duplicated visitor entry!');
         }
         

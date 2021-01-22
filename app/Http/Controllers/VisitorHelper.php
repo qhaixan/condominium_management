@@ -22,8 +22,12 @@ class VisitorHelper extends Controller
       }
     }
     
-    public function duplicateEntry($contact, $nric){
-      $visitor = Visitor::where('contact',$contact)->where('nric',$nric)->whereNull('time_out')->first();
+    public function duplicateEntry($pass_id, $contact, $nric){
+      if ($pass_id) {
+        $visitor = Visitor::where('pass_id',$pass_id)->whereNull('time_out')->first();
+      }else{
+        $visitor = Visitor::where('contact',$contact)->where('nric',$nric)->whereNull('time_out')->first();
+      }
       return $visitor? true: false;
     }
 }
