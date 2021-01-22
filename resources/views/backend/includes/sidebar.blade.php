@@ -46,9 +46,9 @@
                 $logged_in_user->can('admin.access.user.change-password')
             )
         )
-            <li class="c-sidebar-nav-title">@lang('System')</li>
+            <li class="c-sidebar-nav-title" hidden>@lang('System')</li>
 
-            <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
+            <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}" hidden>
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-user"
@@ -90,7 +90,7 @@
         @endif
         
         @if ($logged_in_user->hasAllAccess())
-            <li class="c-sidebar-nav-dropdown">
+            <li class="c-sidebar-nav-dropdown" hidden>
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-list"
