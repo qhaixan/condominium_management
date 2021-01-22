@@ -81,8 +81,12 @@
                     @endif
 
                     <a href="{{ route('frontend.user.account') }}" hidden>@lang('Account')</a>
+                    @if ($logged_in_user->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}">@lang('Admin Dashboard')</a>
+                    @endif
+                    
                 @else
-                    <a href="{{ route('frontend.auth.login') }}">@lang('Admin') @lang('Login')</a>
+                    <a href="{{ route('frontend.auth.login') }}">@lang('Login')</a>
 
                     @if (config('boilerplate.access.user.registration'))
                         <a href="{{ route('frontend.auth.register') }}" hidden>@lang('Register')</a>
