@@ -27,12 +27,12 @@ class AnnouncementSeeder extends Seeder
             /*
              * Note: There is currently no UI for this feature. If you are going to build a UI, and if you are going to use a WYSIWYG editor for the message (because it supports HTML on the frontend) that you properly sanitize the input before it is stored in the database.
              */
-            Announcement::create([
-                'area' => null,
-                'type' => 'info',
-                'message' => 'This is a <strong>Global</strong> announcement that will show on both the frontend and backend. <em>See <strong>AnnouncementSeeder</strong> for more usage examples.</em>',
-                'enabled' => true,
-            ]);
+            // Announcement::create([
+            //     'area' => null,
+            //     'type' => 'info',
+            //     'message' => 'This is a <strong>Global</strong> announcement that will show on both the frontend and backend. <em>See <strong>AnnouncementSeeder</strong> for more usage examples.</em>',
+            //     'enabled' => true,
+            // ]);
 
 //            Announcement::create([
 //                'area' => 'frontend',
