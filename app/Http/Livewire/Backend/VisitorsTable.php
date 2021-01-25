@@ -68,6 +68,13 @@ class VisitorsTable extends TableComponent
     public function columns(): array
     {
         return [
+            Column::make(__('Pass ID'), 'pass_id')->searchable()->sortable()->format(function (Visitor $model) {
+                if ($model->pass_id) {
+                  return $model->pass_id;
+                }else{
+                  return '-';
+                }
+            }),
             Column::make(__('IN'), 'time_in')->searchable()->sortable(),
             Column::make(__('OUT'), 'time_out')->searchable()->sortable()->format(function (Visitor $model) {
                 if ($model->time_out) {
