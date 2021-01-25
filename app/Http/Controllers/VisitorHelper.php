@@ -9,12 +9,12 @@ use App\Models\Visitor;
 class VisitorHelper extends Controller
 {
     
-    public function capacityMaxed($unit_block, $unit_number) {
+    public function capacityMaxed($unit_id) {
       $residentialCapacity = 8;
       $nonResidentialCapacity = 8;
-      $visitors = Visitor::where('unit_block',$unit_block)->where('unit_number',$unit_number)->whereNull('time_out')->get();
+      $visitors = Visitor::where('unit_id', $unit_id)->whereNull('time_out')->get();
       $visitorstcount = $visitors->count();
-      $unit = Unit::where('unit_block', $unit_block)->where('unit_number', $unit_number)->first();
+      $unit = Unit::where('id', $unit_id)->first();
       if ($unit->is_residential) {
         return $visitorstcount >= $residentialCapacity;
       }else{

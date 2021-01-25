@@ -69,7 +69,7 @@ class VisitorController extends Controller
           return redirect()->back()->withInput()->withFlashDanger('Duplicated visitor entry!');
         }
 
-        if ($helper->capacityMaxed($request->unit_block, $request->unit_number)) {
+        if ($helper->capacityMaxed($unit->id)) {
           return redirect()->back()->withInput()->withFlashDanger('Room capacity maxed!');
         }
 
@@ -80,8 +80,7 @@ class VisitorController extends Controller
         $visitor->name = $request->name;
         $visitor->nric = strtoupper($request->nric);
         $visitor->contact = $request->contact;
-        $visitor->unit_block = $request->unit_block;
-        $visitor->unit_number = $request->unit_number;
+        $visitor->unit_id = $unit->id;
         $visitor->time_in = $request->time_in;
         $visitor->time_out = $request->time_out;
         $visitor->save();
@@ -124,6 +123,7 @@ class VisitorController extends Controller
         $visitor->name = $request->name;
         $visitor->nric = strtoupper($request->nric);
         $visitor->contact = $request->contact;
+        $visitor->unit_id = $unit->id;
         $visitor->time_in = $request->time_in;
         $visitor->time_out = $request->time_out;
         $visitor->save();

@@ -50,14 +50,14 @@ class VisitorsTable extends TableComponent
      */
     public function query(): Builder
     {
-        $query = Visitor::query();
+        $query = Visitor::with('unit');
         if ($this->samevisitor) {
           $visitor_info = Visitor::where('id', $this->samevisitor)->first();
           if ($visitor_info) {
-            $query = Visitor::where('contact',$visitor_info->contact)->where('nric',$visitor_info->nric);
+            $query = $query->where('contact',$visitor_info->contact)->where('nric',$visitor_info->nric);
           }
         }else if($this->filter == 'pending_checkout') {
-          $query = Visitor::whereNull('time_out');
+          $query = $query->whereNull('time_out');
         }
         return $query;
     }
@@ -79,8 +79,8 @@ class VisitorsTable extends TableComponent
             Column::make(__('Name'), 'name')->searchable()->sortable(),
             Column::make(__('NRIC'), 'nric')->searchable(),
             Column::make(__('Contact'), 'contact')->searchable()->sortable(),
-            Column::make(__('Block'), 'unit_block')->searchable()->sortable(),
-            Column::make(__('Unit'), 'unit_number')->searchable()->sortable(),
+            Column::make(__('Block'), 'unit.unit_block')->searchable()->sortable(),
+            Column::make(__('Unit'), 'unit.unit_number')->searchable()->sortable(),
             Column::make(__('Actions'))
                 ->format(function (Visitor $model) {
                     return view('backend.visitor.includes.actions', ['unit' => $model]);

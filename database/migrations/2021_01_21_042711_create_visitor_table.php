@@ -18,12 +18,15 @@ class CreateVisitorTable extends Migration
             $table->string('pass_id')->nullable();
             $table->string('name');
             $table->string('contact');
-            $table->string('unit_block');
-            $table->string('unit_number');
+            $table->bigInteger('unit_id')->unsigned();
             $table->string('nric');
             $table->timestamp('time_in')->nullable();
             $table->timestamp('time_out')->nullable();
             $table->timestamps();
+        });
+        
+        Schema::table('visitor', function (Blueprint $table) {
+          $table->foreign('unit_id')->references('id')->on('unit')->onDelete('cascade');
         });
     }
 

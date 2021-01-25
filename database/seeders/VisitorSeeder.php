@@ -40,8 +40,7 @@ class VisitorSeeder extends Seeder
                 'name'=>$faker->name,
                 'contact'=>$faker->numberBetween(60000000,99999999),
                 'nric'=>$faker->bothify('##?'),
-                'unit_block'=>$unit->unit_block,
-                'unit_number'=>$unit->unit_number
+                'unit_id'=>$unit->id
               ];
             }
             
@@ -65,8 +64,7 @@ class VisitorSeeder extends Seeder
                   'pass_id' => null,
                   'name' => $visitor? $visitor['name'] : $faker->name,
                   'contact' => $visitor? $visitor['contact'] : $faker->numberBetween(60000000,99999999),
-                  'unit_block' => $visitor? $visitor['unit_block'] : $unit->unit_block,
-                  'unit_number' => $visitor? $visitor['unit_number'] : $unit->unit_number,
+                  'unit_id' => $visitor? $visitor['unit_id'] : $unit->id,
                   'nric' => strtoupper( $visitor? $visitor['nric'] : $faker->bothify('##?') ),
                   'time_in' => $date->format('Y-m-d H:i:s'),
                   'time_out' => $date->addSeconds(rand(1800, 21600))->format('Y-m-d H:i:s')

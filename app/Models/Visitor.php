@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Unit;
 
 class Visitor extends Model
 {    
@@ -14,7 +15,7 @@ class Visitor extends Model
         'pass_id',
         'name',
         'contact',
-        'unit_block',
+        'unit_id',
         'nric',
         'time_in',
         'time_out'
@@ -24,4 +25,8 @@ class Visitor extends Model
       'updated_at',
       'created_at'
     ];
+    
+    public function unit() {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 }
