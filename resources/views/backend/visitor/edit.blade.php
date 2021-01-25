@@ -52,7 +52,8 @@
                         <label for="name" class="col-md-2 col-form-label">@lang('Unit Block')</label>
 
                         <div class="col-md-10">
-                            <input type="text"  name="unit_block" class="form-control" placeholder="{{ __('Unit Block') }}" value="{{ old('unit_block') ?? $visitor->unit_block }}" maxlength="100" required />
+                            <!-- <input type="text"  name="unit_block" class="form-control" placeholder="{{ __('Unit Block') }}" value="{{ old('unit_block') ?? $visitor->unit->unit_block }}" maxlength="100" required /> -->
+                            <select class="form-control" id="block_select" name="unit_block"></select>
                         </div>
                     </div><!--form-group-->
                     
@@ -60,7 +61,8 @@
                         <label for="unit_number" class="col-md-2 col-form-label">@lang('Unit Number')</label>
 
                         <div class="col-md-10">
-                            <input type="text"  name="unit_number" class="form-control" placeholder="{{ __('Unit Number') }}" value="{{ old('unit_number') ?? $visitor->unit_number }}" maxlength="100" required />
+                            <!-- <input type="text"  name="unit_number" class="form-control" placeholder="{{ __('Unit Number') }}" value="{{ old('unit_number') ?? $visitor->unit->unit_number }}" maxlength="100" required /> -->
+                            <select class="form-control" id="unit_select" name="unit_number"></select>
                         </div>
                     </div><!--form-group-->
                     
@@ -103,3 +105,7 @@
         </x-backend.card>
     </x-forms.patch>
 @endsection
+
+@push('after-scripts')
+  @include('includes.unit-selection')
+@endpush

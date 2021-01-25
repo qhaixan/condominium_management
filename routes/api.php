@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Frontend\API\DropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::group([
+  'prefix' => 'unit_select',
+  'as' => 'unit_select.'
+], function(){
+  Route::get('/block', [DropdownController::class, 'block'])->name('block');
+  Route::get('/number', [DropdownController::class, 'number'])->name('number');
+});
